@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Website</title>
+    <style>
+        /* Styles remain the same */
+        body {
+            /* Set your body background color */
+            background-color: #1a1a1a; /* Example color, change to your preferred color */
+        }
+        #chat-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            /* Set your chat container background color */
+            background-color: rgba(163, 163, 163, 0.8); /* Example color, change to your preferred color */
+        }
+        #chat-history {
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            /* Set your chat history background color */
+            background-color: rgba(163, 163, 163, 0.9); /* Example color, change to your preferred color */
+        }
+    </style>
+</head>
+<body>
+    <!-- Rest of your HTML content -->
+</body>
+</html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Website</title>
+    <style>
+        /* Styles remain the same */
+    </style>
+</head>
+<body>
+    <img src="mapa.png" alt="Image" width="1200">
+    <div id="chat-container">
+        <input type="text" id="name" placeholder="Your Name">
+        <textarea id="chat-box" placeholder="Type your message"></textarea>
+        <button onclick="sendMessage()">Send</button>
+        <div id="chat-history"></div>
+    </div>
+
+    <script>
+        let messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+
+        function sendMessage() {
+            var name = document.getElementById("name").value;
+            var message = document.getElementById("chat-box").value;
+
+            if (name && message) {
+                messages.push({ name, message });
+                updateChatHistory();
+                document.getElementById("chat-box").value = "";
+                localStorage.setItem("chatMessages", JSON.stringify(messages));
+            }
+        }
+
+        function updateChatHistory() {
+            const chatHistoryElement = document.getElementById("chat-history");
+            chatHistoryElement.innerHTML = "";
+            
+            messages.forEach(({ name, message }) => {
+                const messageElement = document.createElement("div");
+                messageElement.innerText = `${name}: ${message}`;
+                chatHistoryElement.appendChild(messageElement);
+            });
+        }
+
+        // Load initial chat history when the page loads
+        updateChatHistory();
+    </script>
+</body>
+</html>
